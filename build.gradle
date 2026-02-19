@@ -18,7 +18,40 @@ version = mod_version
 group = mod_group_id
 
 repositories {
-    // Add here additional repositories if required by some of the dependencies below.
+
+    maven {
+        url "https://cursemaven.com"
+    }
+
+    // Iron's Spells
+    maven {
+        name = "Redspace"
+        url = "https://code.redspace.io/releases"
+    }
+
+    // Curios
+    maven {
+        name = "IllusiveC4"
+        url = "https://maven.theillusivec4.top"
+    }
+
+    // JEI
+    maven {
+        name = "BlameJared"
+        url = "https://maven.blamejared.com"
+    }
+
+    // GeckoLib
+    maven {
+        url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+        content {
+            includeGroup("software.bernie.geckolib")
+        }
+    }
+
+    // Player Animator
+    maven { url 'https://maven.kosmx.dev/' }
+
 }
 
 base {
@@ -112,27 +145,27 @@ configurations {
 }
 
 dependencies {
-    // Example optional mod dependency with JEI
-    // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
-    // compileOnly "mezz.jei:jei-${mc_version}-common-api:${jei_version}"
-    // compileOnly "mezz.jei:jei-${mc_version}-neoforge-api:${jei_version}"
-    // We add the full version to localRuntime, not runtimeOnly, so that we do not publish a dependency on it
-    // localRuntime "mezz.jei:jei-${mc_version}-neoforge:${jei_version}"
+    compileOnly "curse.maven:jei-238222:7420587"
 
-    // Example mod dependency using a mod jar from ./libs with a flat dir repository
-    // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
-    // The group id is ignored when searching -- in this case, it is "blank"
-    // implementation "blank:coolmod-${mc_version}:${coolmod_version}"
+    // === Iron's Spells ===
+    compileOnly "io.redspace:irons_spellbooks:${irons_spells_version}:api"
+    localRuntime "io.redspace:irons_spellbooks:${irons_spells_version}"
 
-    // Example mod dependency using a file as dependency
-    // implementation files("libs/coolmod-${mc_version}-${coolmod_version}.jar")
+// === Curios ===
+    compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}:api"
+    runtimeOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
 
-    // Example project dependency using a sister or child project:
-    // implementation project(":myproject")
+// === Player Animator ===
+    implementation "curse.maven:playeranimator-658587:7389814"
 
-    // For more info:
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+// === GeckoLib ===
+    implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
+// === JEI ===
+    compileOnly "mezz.jei:jei-${jei_mc_version}-common-api:${jei_version}"
+    compileOnly "mezz.jei:jei-${jei_mc_version}-neoforge-api:${jei_version}"
+    runtimeOnly "mezz.jei:jei-${jei_mc_version}-neoforge:${jei_version}"
+
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
