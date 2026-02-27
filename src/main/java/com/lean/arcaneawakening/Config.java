@@ -1,4 +1,4 @@
-package com.lean.arcaneawakeningmod;
+package com.lean.arcaneawakening;
 
 import java.util.List;
 

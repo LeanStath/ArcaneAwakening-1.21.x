@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "arcaneawakeningmod:item/light_core"
+    "layer0": "arcaneawakening:item/light_core"
   }
 }
